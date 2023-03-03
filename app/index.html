@@ -6,23 +6,24 @@
     <title>Online chat</title>
   </head>
   <body>
-    
-  <section style="display:none;" id="chat_form">
-    <form name="publish">
-      <input type="text" name="message" maxlength="50"/>
-      <input type="submit" value="Send"/>
-    </form>
 
-    <div id="messages"></div>
-  </section>
+    <section style="display:none;" id="chat_form">
+      <form name="publish">
+        <input type="text" name="message" maxlength="50" />
+        <input type="submit" value="Send" />
+      </form>
 
-  <section id="code_form">
-    <form name="code_form">
-      <input type="text" name="code" maxlength="8"/>
-      <input type="submit" value="Submit"/>
-    </form>
-  </section>
+      <div id="messages"></div>
+    </section>
 
-    <script type="module" src="/main.js"></script>
+    <section id="code_form">
+      <form name="code_form">
+        <input type="text" name="code" maxlength="8" />
+        <input type="submit" value="Submit" />
+      </form>
+      <button id="gen_code">Generate code</button>
+    </section>
+
+    <script type="module" src="./main.js"></script>
   </body>
 </html>

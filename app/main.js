@@ -1,26 +1,38 @@
-let url = 'ws://localhost:8080/ws';
+import axios from 'axios'
 
-let socket = new WebSocket(url);
+let wsUrl = 'ws://localhost:8080/ws';
+
+let socket = new WebSocket(wsUrl);
+
+
+const getCode = () => {
+  document.getElementById("code_form").style.display = "none";
+  document.getElementById("chat_form").style.display = "block";
+
+  axios.get("http://localhost:8000/code")
+    .then((res) => { console.log(res.data); })
+    .catch((err) => { console.log(err); })
+}
 
 // send message from the form
-document.forms.publish.onsubmit = function() {
+document.forms.publish.onsubmit = function () {
   let outgoingMessage = this.message.value;
 
   socket.send(outgoingMessage);
   return false;
 };
 
-document.forms.code_form.onsubmit = function() {
-  
+document.forms.code_form.onsubmit = function () {
+
   // Check code validity //
   document.getElementById("code_form").style.display = "none";
   document.getElementById("chat_form").style.display = "block";
-  
+
   return false;
 };
 
 // handle incoming messages
-socket.onmessage = async function(event) {
+socket.onmessage = async function (event) {
   if (event.data instanceof Blob) {
     let reader = new FileReader();
 
@@ -29,7 +41,7 @@ socket.onmessage = async function(event) {
     };
 
     reader.readAsText(event.data);
-    
+
   } else {
     showMessage(event.data);
   }
@@ -43,3 +55,6 @@ function showMessage(message) {
   messageElem.textContent = message;
   document.getElementById('messages').prepend(messageElem);
 }
+
+
+document.getElementById("gen_code").addEventListener("click", getCode);
