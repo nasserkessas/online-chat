@@ -7,13 +7,22 @@
   </head>
   <body>
     
+  <section style="display:none;" id="chat_form">
     <form name="publish">
       <input type="text" name="message" maxlength="50"/>
       <input type="submit" value="Send"/>
     </form>
 
     <div id="messages"></div>
-    
+  </section>
+
+  <section id="code_form">
+    <form name="code_form">
+      <input type="text" name="code" maxlength="8"/>
+      <input type="submit" value="Submit"/>
+    </form>
+  </section>
+
     <script type="module" src="/main.js"></script>
   </body>
 </html>

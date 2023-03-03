@@ -10,6 +10,15 @@ document.forms.publish.onsubmit = function() {
   return false;
 };
 
+document.forms.code_form.onsubmit = function() {
+  
+  // Check code validity //
+  document.getElementById("code_form").style.display = "none";
+  document.getElementById("chat_form").style.display = "block";
+  
+  return false;
+};
+
 // handle incoming messages
 socket.onmessage = async function(event) {
   if (event.data instanceof Blob) {
