@@ -7,6 +7,7 @@ const codeLen = 8;
 
 
 const requestListener = function (req, res) {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
     res.setHeader("Content-Type", "application/json");
     switch (req.url){
         case "/code":
