@@ -1,7 +1,7 @@
-const http = require('http');
-const ws = new require('ws');
+import { createServer } from 'http';
+import { WebSocketServer } from 'ws';
 
-const wss = new ws.Server({ noServer: true });
+const wss = new WebSocketServer({ noServer: true });
 
 const clients = new Set();
 
@@ -40,4 +40,4 @@ function onSocketConnect(ws) {
 
 let log = console.log;
 
-http.createServer(accept).listen(8080);
+createServer(accept).listen(8080);
