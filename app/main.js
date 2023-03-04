@@ -24,7 +24,14 @@ document.forms.publish.onsubmit = function () {
 
 document.forms.code_form.onsubmit = function () {
 
-  // Check code validity //
+  axios.post("http://localhost:8000/code", {code: this.code.value}, {
+    headers: {
+      'content-type': 'text/plain'
+    }
+  })
+  .then((res) => { console.log(res.data); })
+  .catch((err) => { console.log(err); })
+
   document.getElementById("code_form").style.display = "none";
   document.getElementById("chat_form").style.display = "block";
 
