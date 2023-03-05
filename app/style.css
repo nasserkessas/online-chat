@@ -49,3 +49,7 @@ input[type="email"]:invalid {
 	margin-right: 2rem;
 	clear: left;
 }
+
+.message {
+    display: none;
+}

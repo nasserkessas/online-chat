@@ -4,14 +4,18 @@ let wsUrl = 'ws://localhost:8080/ws';
 
 let socket = new WebSocket(wsUrl);
 
+const setMessage = (msg, error = true) => {
+  let messageElem = document.getElementById("message");
+  messageElem.style.display = "block";
+  messageElem.style.color = error ? "red" : "white";
+  messageElem.innerHTML = msg;
+}
 
 const getCode = () => {
-  document.getElementById("code_form").style.display = "none";
-  document.getElementById("chat_form").style.display = "block";
 
   axios.get("http://localhost:8000/code")
-    .then((res) => { console.log(res.data); })
-    .catch((err) => { console.log(err); })
+    .then((res) => { setMessage(`Code is ${res.data.code}`); })
+    .catch((err) => { setMessage("An error occurred generating a code, please try again", true); console.log(err); })
 }
 
 // send message from the form
@@ -29,11 +33,13 @@ document.forms.code_form.onsubmit = function () {
       'content-type': 'text/plain'
     }
   })
-  .then((res) => { console.log(res.data); })
-  .catch((err) => { console.log(err); })
-
-  document.getElementById("code_form").style.display = "none";
-  document.getElementById("chat_form").style.display = "block";
+  .then((res) => {
+    document.getElementById("code_form").style.display = "none";
+    document.getElementById("chat_form").style.display = "block";
+  })
+  .catch((err) => {
+    setMessage("Invalid code, Please enter a correct code or generate a new one.", true);
+  })
 
   return false;
 };
