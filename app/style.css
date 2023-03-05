@@ -6,11 +6,7 @@ html, body {
 	background: #fff;
 	color: #000;
 }
-	
-body {
-	font-size: 1.4rem;
-	text-rendering: optimizeLegibility;
-}
+
 
 body, ul, ol, dl {
 	margin: 0;
