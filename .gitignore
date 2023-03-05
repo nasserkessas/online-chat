@@ -27,3 +27,7 @@ dist-ssr
 # Valid codes file
 
 websocket/codes.json
+
+# Todo file
+
+todo
