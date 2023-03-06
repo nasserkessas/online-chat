@@ -19,14 +19,14 @@ const getCode = () => {
 }
 
 // send message from the form
-document.forms.publish.onsubmit = function () {
+document.forms.publish.onsubmit = () => {
   let outgoingMessage = this.message.value;
 
   socket.send(outgoingMessage);
   return false;
 };
 
-document.forms.code_form.onsubmit = function () {
+document.forms.code_form.onsubmit = () => {
 
   axios.post("http://localhost:8000/code", { code: this.code.value }, {
     headers: {
@@ -48,7 +48,7 @@ document.forms.code_form.onsubmit = function () {
 
 const initSocket = (socket) => {
   // handle incoming messages
-  socket.onmessage = async function (event) {
+  socket.onmessage = async (event) => {
     if (event.data instanceof Blob) {
       let reader = new FileReader();
 
@@ -67,7 +67,7 @@ const initSocket = (socket) => {
 }
 
 // show message in div#messages
-function showMessage(message) {
+const showMessage = (message) => {
   let messageElem = document.createElement('div');
   messageElem.textContent = message;
   document.getElementById('messages').prepend(messageElem);

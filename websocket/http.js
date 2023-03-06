@@ -10,7 +10,7 @@ const port = 8000;
 const codeLen = 8;
 
 
-const requestListener = function (req, res) {
+const requestListener = (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token');
@@ -70,7 +70,7 @@ const requestListener = function (req, res) {
 };
 
 const generateCode = () => {
-    return "abcdefghijklmnopqrstuvwxyzABSCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split('').sort(function () { return 0.5 - Math.random() }).join('').slice(0, codeLen);
+    return "abcdefghijklmnopqrstuvwxyzABSCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split('').sort(() => { return 0.5 - Math.random() }).join('').slice(0, codeLen);
 }
 
 const server = http.createServer(requestListener);

@@ -12,7 +12,7 @@ wss.on("connection", (socket, req) => {
   log(clients.length);
 
 
-  socket.on('message', function (message) {
+  socket.on('message', (message) => {
     log(`message received: ${message}`);
 
     message = message.slice(0, 50); // max message length will be 50
@@ -24,7 +24,7 @@ wss.on("connection", (socket, req) => {
     }
   });
 
-  socket.on('close', function () {
+  socket.on('close', () => {
     log(`connection closed`);
     clients = clients.filter(c => c.socket != socket);
     log(clients.length);
