@@ -31,3 +31,7 @@ websocket/codes.json
 # Todo file
 
 todo
+
+# Environment
+
+.env
