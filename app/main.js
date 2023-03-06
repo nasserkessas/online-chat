@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let wsUrl = 'ws://localhost:8080/ws';
+let wsUrl = 'ws://localhost:8080';
 
 let socket;
 
@@ -36,7 +36,7 @@ document.forms.code_form.onsubmit = function () {
     .then((res) => {
       document.getElementById("code_form").style.display = "none";
       document.getElementById("chat_form").style.display = "block";
-      socket = new WebSocket(wsUrl);
+      socket = new WebSocket(`${wsUrl}/${this.code.value}`);
       initSocket(socket);
     })
     .catch((err) => {
