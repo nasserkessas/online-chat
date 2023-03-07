@@ -20,14 +20,14 @@ const getCode = () => {
 }
 
 // send message from the form
-document.forms.publish.onsubmit = () => {
+document.forms.publish.onsubmit = function () {
   let outgoingMessage = this.message.value;
 
   socket.send(outgoingMessage);
   return false;
 };
 
-document.forms.code_form.onsubmit = () => {
+document.forms.code_form.onsubmit = function () {
 
   axios.post(`http://localhost:${process.env.HTTP_PORT || 8000}/code`, { code: this.code.value }, {
     headers: {
