@@ -1,4 +1,4 @@
-# Online chat
+# Online Chat
 
 :computer: Work in progress :computer:
 
