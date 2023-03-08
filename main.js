@@ -1,7 +1,5 @@
 import axios from 'axios'
-import * as dotenv from 'dotenv'
-
-// dotenv.config();
+import config from './config.json' assert { type: 'json' };
 
 let socket;
 
@@ -14,7 +12,7 @@ const setMessage = (msg, error = true) => {
 
 const getCode = () => {
 
-  axios.get(`http://localhost:${8000}/code`)
+  axios.get(config["http-url"])
     .then((res) => { setMessage(`Code is ${res.data.code}`); })
     .catch((err) => { setMessage("An error occurred generating a code, please try again", true); console.log(err); })
 }
@@ -29,7 +27,8 @@ document.forms.publish.onsubmit = function () {
 
 document.forms.code_form.onsubmit = function () {
 
-  axios.post(`http://localhost:${8000}/code`, { code: this.code.value }, {
+  // axios.post(`http://localhost:${8000}/code`, { code: this.code.value }, {
+  axios.post(config["http-url"], { code: this.code.value }, {
     headers: {
       'content-type': 'text/plain'
     }
@@ -37,7 +36,7 @@ document.forms.code_form.onsubmit = function () {
     .then((res) => {
       document.getElementById("code_form").style.display = "none";
       document.getElementById("chat_form").style.display = "block";
-      socket = new WebSocket(`${"ws://localhost:8080"}/${this.code.value}`);
+      socket = new WebSocket(`${config["ws-url"]}/${this.code.value}`);
       initSocket(socket);
     })
     .catch((err) => {
